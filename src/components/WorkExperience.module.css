@@ -1,0 +1,346 @@
+/* src/components/WorkExperience.module.css */
+.section {
+  padding: 9rem 1.5rem 6rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Tiêu đề chính */
+.headline {
+  font-family: var(--font-space-grotesk);
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--on-surface);
+  margin-bottom: 2rem;
+}
+
+/* ── Accent line cam phía trên tiêu đề ── */
+.headline::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background-color: #ffb3ac;
+  border-radius: 2px;
+  margin: 0 auto 1.25rem auto;
+}
+
+/* Mô tả ngắn gọn */
+.description {
+  font-family: var(--font-manrope);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--on-surface-muted);
+  max-width: 850px;
+  margin: 0 auto 4rem auto;
+}
+
+/* Căn chỉnh trên Điện thoại (Responsive) */
+@media (max-width: 767px) {
+  .section {
+    padding: 6rem 1.5rem 4rem 1.5rem;
+  }
+
+  .headline {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+}
+
+/* ==================================================
+   --- Danh sách Timeline Khối Công việc (Cards) --- 
+   ================================================== */
+.timelineContainer {
+  position: relative;
+  max-width: 850px;
+  /* Thu gọn vừa phải giống thiết kế */
+  margin: 0 auto;
+  display: flex;
+  text-align: left;
+  /* Chữ trong các thẻ phải dóng lề trái */
+}
+
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  /* Khoảng cách đen giữa các thẻ bằng nhau */
+  width: 100%;
+}
+
+/* Ô (Thẻ) chứa mỗi kinh nghiệm */
+.timelineCard {
+  position: relative;
+  background-color: #111111;
+  /* Đen tuyền, nhạt hơn nền tổng 1 chút */
+  padding: 2.5rem 3rem;
+  border-radius: 4px;
+  /* Bo cực nhẹ như ảnh */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* Đã gỡ bỏ box-shadow viền mờ khung sương (sợi chỉ) theo yêu cầu */
+  cursor: pointer;
+  /* Biến chuột thành hình ngón tay nhấn để ngầm báo User bấm được */
+}
+
+/* Tương tác khi Hover hoặc Thẻ đang Mở sẽ sáng nền */
+.timelineCard:hover,
+.timelineCard.isExpanded {
+  background-color: #161616;
+  /* Sáng lên nhẹ khi di hoặc mở */
+}
+
+/* Icon xổ xuống nằm ngay dưới số ID góc phải */
+.rightCorner {
+  position: relative;
+  /* Trả về Relative để bám theo dòng Năm */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* Căn lề lùi sang phải */
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.chevronWrapper {
+  position: absolute;
+  /* Đặt tuyệt đối so với ID number để không chiếm hàng */
+  top: 1.5rem;
+  /* Ngay dưới ID 01 */
+  right: 0;
+  /* Thẳng hàng dọc bên phải */
+  color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timelineCard:hover .chevronWrapper {
+  color: #ff5722;
+  /* Sáng màu cam khi di chuột */
+}
+
+/* Khi nhấn phát, xoay tròn 180 độ chỉa mũi tên lên trên y hệt yêu cầu */
+.chevronRotated {
+  transform: rotate(180deg);
+  color: #ff5722;
+  /* Cam hẳn khi đang mở */
+}
+
+/* Lằn viền chỉ báo màu cam sậm (Dành riêng cho block Đang Active) */
+.activeCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  /* Kéo full chiều rộng (cao) đỉnh khối */
+  bottom: 0;
+  /* Kéo full chiều rộng (cao) đáy khối */
+  left: 0;
+  /* Nằm sát lề trái của khối */
+  width: 4px;
+  /* Nét to rõ */
+  background-color: #ff5722;
+  /* Cam chói hệt ảnh mẫu */
+  border-radius: 4px 0 0 4px;
+}
+
+/* HIỆU ỨNG DÀNH RIÊNG CHO MÁY TÍNH: Hover vào là hiện thanh cam luôn */
+@media (min-width: 768px) {
+  .timelineCard:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    background-color: #ff5722;
+    border-radius: 4px 0 0 4px;
+    opacity: 0.8;
+    /* Hơi mờ hơn thẻ đang Active 1 chút để phân biệt */
+  }
+
+  /* Nếu thẻ đã mở (Active) thì Hover vào vẫn giữ màu chuẩn không bị mờ */
+  .activeCard:hover::before {
+    opacity: 1;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  /* Đẩy Năm về trái, ID về phải cho ngang hàng */
+  align-items: baseline;
+  /* Dóng chuẩn theo chân chữ của Year và ID */
+  margin-bottom: 0rem;
+  min-height: 1rem;
+}
+
+.year {
+  font-family: var(--font-space-grotesk);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ff5722;
+  /* Text màu cam giống viền Highlight */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.idNumber {
+  font-family: var(--font-space-grotesk);
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #ffb100;
+  /* Vàng nghệ nhạt (tuỳ chỉnh) */
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Khối Chữ đặc lớn (Impact font style) */
+.jobTitle {
+  font-family: var(--font-space-grotesk);
+  font-size: 2.5rem;
+  font-weight: 900;
+  /* Đậm nhất có thể */
+  color: #ffffff;
+  text-transform: uppercase;
+  /* SENIOR WEBFLOW DEVELOPER */
+  letter-spacing: -0.04em;
+  /* Ép chữ sát lại tạo độ dày khối */
+  margin: 0;
+  margin-top: 0.5rem;
+  /* Kéo chữ sát lên trên dòng thời gian cho đỡ bị xa */
+  line-height: 1.1;
+  /* Một chút mẹo co dãn dọc làm chữ trông hùng vĩ giống "Impact" font hơn */
+  transform: scaleY(1.05);
+  transform-origin: left bottom;
+}
+
+/* Cụm Tags Mobile Design... */
+.tagsGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.tagItem {
+  font-family: var(--font-manrope);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Viền xám mỏng */
+  border-radius: 999px;
+  /* Tròn hình viên thuốc (pill) */
+  padding: 0.4rem 1.25rem;
+  background-color: transparent;
+}
+
+/* Khu vực Mở rộng chi tiết (Kĩ thuật Grid CSS mượt mà) */
+.detailsWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  /* Đóng hoàn toàn */
+  transition: grid-template-rows 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  opacity: 0.2;
+}
+
+.detailsWrapper.showDetails {
+  grid-template-rows: 1fr;
+  /* Sổ thẳng mượt xuống */
+  opacity: 1;
+}
+
+.detailsContent {
+  overflow: hidden;
+  /* Giữ nấp ở trên kĩ thuật */
+}
+
+.detailsList {
+  margin: 0;
+  margin-top: 1.5rem;
+  /* Cắt rời vùng thẻ trên */
+  padding-left: 1.25rem;
+  color: var(--on-surface-muted);
+  font-family: var(--font-manrope);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.detailsListItem {
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.detailsListItem::marker {
+  color: #ff5722;
+  /* Hạt tiêu đề dánh sách (bullet) màu cam */
+}
+
+/* Responsive cho khối thẻ trên Điện thoại */
+@media (max-width: 767px) {
+  .timelineCard {
+    padding: 1.5rem 1.25rem;
+    /* Giảm padding trái phải để chữ có thêm không gian thở */
+  }
+
+  .activeCard::before {
+    top: 0;
+    bottom: 0;
+  }
+
+  .chevronWrapper {
+    top: 1.35rem;
+    right: -0.3rem;
+    transform: scale(0.85);
+    /* Thu nhỏ dấu mũi tên xuóng */
+  }
+
+  .cardHeader {
+    padding-right: 1.5rem;
+    /* Cách mũi tên góc */
+  }
+
+  .jobTitle {
+    font-size: 1.15rem;
+    /* Ép font thật nhỏ lại để đủ nằm trên 1 hàng ngang duy nhất */
+    letter-spacing: 0;
+    /* Thả lỏng chữ một chút cho dễ đọc ở kích thước nhỏ */
+  }
+
+  .year,
+  .idNumber {
+    font-size: 0.7rem;
+  }
+
+  .tagsGroup {
+    margin-top: 1.25rem;
+    /* Kéo thẻ sát lại nội dung hiển thị ở trên một chút */
+    gap: 0.5rem;
+    /* Khoảng hở giữa các thẻ nhỏ hơn ở điện thoại */
+  }
+
+  .tagItem {
+    font-size: 0.65rem;
+    /* Thu nhỏ chữ của Tag trên mobile */
+    padding: 0.3rem 0.85rem;
+    /* Viền bao quanh nhúm nhỏ lại */
+  }
+
+  .detailsList {
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,147 @@
+/* src/components/CoreSkills.module.css */
+.section {
+  padding: 9rem 1.5rem 6rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 1. Tiêu đề Kĩ năng cứng cốt lõi */
+.headline {
+  font-family: var(--font-space-grotesk);
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--on-surface);
+  margin-bottom: 2rem;
+}
+
+/* ── Accent line cam ── */
+.headline::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background-color: #ffb3ac;
+  border-radius: 2px;
+  margin: 0 auto 1.25rem auto;
+}
+
+/* 2. Mô tả bên dưới tiêu đề */
+.description {
+  font-family: var(--font-manrope);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--on-surface-muted);
+  max-width: 850px;
+  margin: 0 auto 1.5rem auto;
+  /* Rút ngắn khoảng cách xuống dải logo (Màn hình Desktop) */
+}
+
+/* Kích cỡ trên Điện thoại */
+@media (max-width: 767px) {
+  .section {
+    padding: 6rem 1.5rem;
+  }
+
+  .headline {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    /* Kéo sát dải logo lên sát mô tả (Màn hình Mobile) */
+  }
+}
+
+/* 3. Khu vực Logo chạy ngang (Marquee) */
+.marqueeContainer {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 1rem 0;
+  /* Không dùng mảng tối màu và border trên dưới nữa */
+
+  /* Tạo hiệu ứng mờ dần (Fade out) ở 2 cạnh trái/phải giúp logo xuất hiện/biến mất cực mượt */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: 2.5rem;
+  /* Khoảng cách giữa các Logo (thay đổi nếu thấy sát nhau quá) */
+  align-items: center;
+  width: max-content;
+
+  /* === ĐIỀU CHỈNH TỐC ĐỘ Ở ĐÂY === */
+  /* Thay số "30s" thành nhỏ hơn (vd 10s) để chạy nhanh, hoặc lớn hơn (vd: 50s) để chạy chậm */
+  animation: scrollLeft 30s linear infinite;
+
+  padding-right: 2.5rem;
+  /* Đảm bảo điểm kết vòng không bị hụt gap với điểm nối đầu */
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+  /* Tạm dừng thanh chạy ngang khi người dùng di chuột tới */
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Box chứa từng cụm Logo và Tên Logo */
+.logoItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--on-surface-muted);
+  font-family: var(--font-space-grotesk);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  min-width: 80px;
+}
+
+.logoItem:hover {
+  color: var(--on-surface);
+  /* Đổi phần tên thành màu trắng sáng khi trỏ chuột */
+  transform: translateY(-5px);
+  /* Khối logo nảy lên nhẹ */
+}
+
+/* Kiểu dáng riêng của Logo dạng ẢNH (Image) thay cho khối vuông ban đầu */
+/* === ĐIỀU CHỈNH KÍCH MÀU VÀ ĐỘ LỚN ẢNH LOGO Ở ĐÂY === */
+.realLogo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  /* Đảm bảo logo hình vuông/dài không bị bóp méo */
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+  /* Đổ bóng ảo giác cho logo PNG/SVG */
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 767px) {
+  .realLogo {
+    width: 48px;
+    height: 48px;
+  }
+}

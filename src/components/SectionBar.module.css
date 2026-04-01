@@ -1,0 +1,92 @@
+/* src/components/SectionBar.module.css */
+
+/* ── Thanh bar cố định dưới viewport ── */
+.bar {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px); /* Ẩn bên dưới màn hình */
+  z-index: 900;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease;
+}
+
+/* Hiện thanh bar khi đã scroll qua Hero */
+.barVisible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Container bên trong ── */
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: rgba(24, 24, 24, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.4rem;
+  border-radius: 999px;
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.06); /* Ghost border */
+}
+
+/* ── Mỗi mục ── */
+.item {
+  font-family: var(--font-space-grotesk);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.item:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mục đang active — highlight bằng surface sáng hơn */
+.itemActive {
+  color: #ffffff;
+  background-color: rgba(255, 179, 172, 0.15); /* primary 15% */
+}
+
+/* ── Responsive Mobile ── */
+@media (max-width: 767px) {
+  .bar {
+    bottom: 1rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    transform: translateX(0) translateY(100px);
+    width: auto;
+  }
+  .barVisible {
+    transform: translateX(0) translateY(0);
+  }
+  .inner {
+    width: 100%;
+    justify-content: center;
+    gap: 0.15rem;
+    padding: 0.35rem;
+    overflow-x: auto;
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE/Edge */
+  }
+  .inner::-webkit-scrollbar {
+    display: none;              /* Chrome/Safari */
+  }
+  .item {
+    font-size: 0.7rem;
+    padding: 0.45rem 0.7rem;
+    flex-shrink: 0;
+  }
+}

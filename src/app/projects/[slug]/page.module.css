@@ -1,0 +1,171 @@
+/* src/app/projects/[slug]/page.module.css */
+
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 8rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-manrope);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  margin-bottom: 3rem;
+  transition: color 0.2s ease;
+}
+.backLink:hover {
+  color: #ffb3ac;
+}
+
+/* Ảnh bìa */
+.coverImage {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 2.5rem;
+  background-color: #1a1a1a;
+}
+
+/* Header */
+.header {
+  margin-bottom: 2.5rem;
+}
+
+.typeTag {
+  display: inline-block;
+  font-family: var(--font-space-grotesk);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffb3ac;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-family: var(--font-space-grotesk);
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 0.75rem 0;
+}
+
+.meta {
+  display: flex;
+  gap: 0.5rem;
+  font-family: var(--font-manrope);
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* Mô tả */
+.descSection {
+  margin-bottom: 2.5rem;
+}
+.description {
+  font-family: var(--font-manrope);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* Tools */
+.toolsSection {
+  margin-bottom: 2.5rem;
+}
+.sectionTitle {
+  font-family: var(--font-space-grotesk);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+}
+.toolList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.toolTag {
+  font-family: var(--font-manrope);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+}
+
+/* Kết quả */
+.resultsSection {
+  margin-bottom: 2.5rem;
+}
+.resultList {
+  padding-left: 1.25rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.resultItem {
+  font-family: var(--font-manrope);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+}
+.resultItem::marker {
+  color: #ffb3ac;
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.galleryImg {
+  width: 100%;
+  border-radius: 8px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background-color: #1a1a1a;
+}
+
+/* Live link button */
+.liveBtn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ffb3ac;
+  color: #680008;
+  font-family: var(--font-space-grotesk);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.875rem 2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.liveBtn:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 767px) {
+  .main {
+    padding: 4rem 1.25rem 6rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}

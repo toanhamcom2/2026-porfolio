@@ -1,0 +1,470 @@
+.navbar {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 600px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+
+  /* Hiệu ứng nền trơn trơn có ánh gradient đỏ góc trên bên phải */
+  background-color: #1d0a0a;
+  background-image: radial-gradient(circle at 100% 0%, rgba(200, 40, 40, 0.4), transparent 70%);
+
+  border: 1px solid var(--outline-variant);
+  z-index: 1000;
+}
+
+/* Kéo Navbar lên sát viền trên màn hình điện thoại hơn */
+@media (max-width: 767px) {
+  .navbar {
+    top: 1rem;
+  }
+}
+
+.logo {
+  font-family: var(--font-space-grotesk);
+  font-weight: bold;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  color: var(--on-surface);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Right side actions */
+.rightActions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Thu hẹp khoảng cách nếu màn hình quá nhỏ để nhét vừa nút CV */
+@media (max-width: 400px) {
+  .rightActions {
+    gap: 0.75rem;
+  }
+}
+
+.langSwitch {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  color: var(--on-surface-muted);
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.langSwitch:hover {
+  color: var(--on-surface);
+}
+
+.globeIcon {
+  display: flex;
+  align-items: center;
+  margin-top: -2px;
+  /* Căn chỉnh quang học svg */
+}
+
+.langText {
+  font-family: var(--font-manrope);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Nút Tải CV */
+.btnDownloadCV {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  /* Tròn như nút Create Account */
+  font-family: var(--font-manrope);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: filter 0.2s ease;
+  white-space: nowrap;
+}
+
+.btnDownloadCV:hover {
+  filter: brightness(1.1);
+}
+
+/* Hamburger - Chỉ hiện trên màn hình nhỏ */
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.hamburger span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background-color: var(--on-surface);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+/* Radix Navigation Menu (Chỉ hiện trên màn hình lớn) */
+.navRoot {
+  position: relative;
+  display: none;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .navRoot {
+    display: flex;
+    /* Cách để đẩy "Mero's space" về bên trái: */
+    /* Lợi dụng margin-right auto để ăn hết không gian trống bên phải */
+    margin-right: auto;
+    /* Khoảng cách từ Menu tới Logo. Nếu bạn muốn đẩy qua trái nhiều hơn, GIẢM số này lại (vd: 1rem), nếu muốn đẩy sang phải, TĂNG lên (vd: 5rem) */
+    margin-left: 2rem;
+  }
+}
+
+.navList {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  list-style: none;
+}
+
+.navLink,
+.navTrigger {
+  font-family: var(--font-manrope);
+  font-size: 0.875rem;
+  color: var(--on-surface-muted);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: color 0.2s;
+}
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  margin-top: -1px;
+}
+
+.navLink:hover,
+.navTrigger:hover,
+.navTrigger[data-state='open'] {
+  color: var(--on-surface);
+}
+
+.navTrigger::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid currentColor;
+  margin-left: 2px;
+  transition: transform 0.2s ease;
+}
+
+.navTrigger[data-state='open']::after {
+  transform: rotate(180deg);
+}
+
+.navContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  animation-duration: 0.2s;
+  animation-timing-function: ease;
+}
+
+.navContent[data-motion='from-start'] {
+  animation-name: enterFromLeft;
+}
+
+.navContent[data-motion='from-end'] {
+  animation-name: enterFromRight;
+}
+
+.navContent[data-motion='to-start'] {
+  animation-name: exitToLeft;
+}
+
+.navContent[data-motion='to-end'] {
+  animation-name: exitToRight;
+}
+
+.ViewportPosition {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  perspective: 2000px;
+}
+
+.navViewport {
+  position: relative;
+  transform-origin: top center;
+  margin-top: 15px;
+  width: var(--radix-navigation-menu-viewport-width, 220px);
+  height: var(--radix-navigation-menu-viewport-height, auto);
+  min-width: 220px;
+  min-height: 80px;
+  background-color: rgba(20, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--outline-variant);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: width, height, 0.3s ease;
+}
+
+.navViewport[data-state='open'] {
+  animation: scaleIn 0.2s ease;
+}
+
+.navViewport[data-state='closed'] {
+  animation: scaleOut 0.2s ease;
+}
+
+.dropdownList {
+  list-style: none;
+  padding: 0.75rem;
+  margin: 0;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dropdownItem a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.85rem;
+  font-family: var(--font-manrope);
+  color: var(--on-surface-muted);
+  transition: background 0.15s;
+  text-decoration: none;
+}
+
+.dropdownItem a:hover {
+  background: var(--surface-bright);
+  color: var(--on-surface);
+}
+
+/* Mobile Menu Overlay (Thiết kế dựa trên bản mẫu) */
+.mobileMenu {
+  position: fixed;
+  top: 5.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+
+  /* Hiệu ứng nền trơn trơn có ánh gradient đỏ góc trên bên phải */
+  background-color: #1d0a0a;
+  background-image: radial-gradient(circle at 100% 0%, rgba(200, 40, 40, 0.15), transparent 70%);
+
+  border: 1px solid var(--outline-variant);
+  border-radius: 1rem;
+  padding: 1.5rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .mobileMenu {
+    display: none !important;
+  }
+}
+
+.mobileMenuOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(5px);
+}
+
+.mobileSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobileLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-manrope);
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  color: #a0a0a0;
+  margin-bottom: 0.25rem;
+  padding-left: 0.2rem;
+}
+
+.mobileLabelIcon {
+  display: flex;
+  align-items: center;
+}
+
+.mobileLabelIcon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.mobileItem {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-manrope);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #eeeeee;
+  text-decoration: none;
+  padding: 0.5rem 0.25rem;
+  border-radius: 0.5rem;
+  transition: color 0.15s ease;
+  margin-left: 1.25rem;
+  /* Thụt lề vào một chút cho cấp con */
+}
+
+.mobileItem:hover {
+  color: #ffffff;
+}
+
+.mobileIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  opacity: 0.8;
+  padding: 4px;
+}
+
+.mobileIconWrapper svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes enterFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes enterFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes exitToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes exitToLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: rotateX(-30deg) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: rotateX(-30deg) scale(0.95);
+  }
+}

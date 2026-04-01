@@ -1,0 +1,149 @@
+/* src/components/Footer.module.css */
+
+.footer {
+  width: 100%;
+  border-top: 1px solid rgba(255,255,255,0.06); /* Ghost border — mỏng, không "dơ" */
+  margin-top: 2rem;
+}
+
+.inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 2.5rem;
+}
+
+/* ── Hàng trên: 3 cột ── */
+.topRow {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr; /* Brand chiếm rộng hơn */
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+/* Cột Brand */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.brandName {
+  font-family: var(--font-space-grotesk);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffb3ac; /* primary */
+  text-decoration: none;
+  letter-spacing: -0.03em;
+  transition: opacity 0.2s ease;
+}
+.brandName:hover {
+  opacity: 0.75;
+}
+
+.tagline {
+  font-family: var(--font-manrope);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.3);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+/* Tiêu đề cột */
+.colTitle {
+  display: block;
+  font-family: var(--font-space-grotesk);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* Danh sách */
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.navLink {
+  font-family: var(--font-manrope);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.navLink:hover {
+  color: #ffb3ac;
+}
+
+.externalArrow {
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
+.navLink:hover .externalArrow {
+  opacity: 1;
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  margin-bottom: 2rem;
+}
+
+/* ── Hàng dưới: Copyright ── */
+.bottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-family: var(--font-manrope);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+  margin: 0;
+}
+
+/* Tên được nhấn mạnh bằng màu primary */
+.copyrightAccent {
+  color: #ffb3ac;
+  font-weight: 600;
+}
+
+.builtWith {
+  font-family: var(--font-manrope);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.18);
+  margin: 0;
+}
+
+/* ── Responsive Mobile ── */
+@media (max-width: 767px) {
+  .inner {
+    padding: 2.5rem 1.25rem 2rem;
+  }
+  .topRow {
+    grid-template-columns: 1fr; /* 1 cột dọc trên mobile */
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .brandName {
+    font-size: 1.25rem;
+  }
+  .bottomRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  .builtWith {
+    font-size: 0.68rem;
+  }
+}

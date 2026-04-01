@@ -1,0 +1,328 @@
+/* src/components/Contact.module.css */
+
+.section {
+  padding: 9rem 1.5rem 5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* =====================================================
+   TIÊU ĐỀ 1 DÒNG — "Liên hệ" trắng + "tôi" primary in nghiêng
+   ===================================================== */
+.headlineBlock {
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.4em;
+  line-height: 1.0;
+  flex-wrap: wrap;
+}
+
+/* ── Vạch cam accent căn giữa section ── */
+.accentLine {
+  width: 40px;
+  height: 3px;
+  background-color: #ffb3ac;
+  border-radius: 2px;
+  margin: 0 auto 2.5rem auto;
+}
+
+.headlineLine1 {
+  font-family: var(--font-space-grotesk);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 900;
+  color: var(--on-surface);
+  letter-spacing: -0.04em;
+}
+
+/* "tôi" — màu primary + in nghiêng */
+.headlineLine2 {
+  font-family: var(--font-space-grotesk);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 900;
+  color: #ffb3ac;
+  letter-spacing: -0.04em;
+  font-style: italic;
+}
+
+/* =====================================================
+   LAYOUT 2 CỘT
+   ===================================================== */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+/* ── CỘT TRÁI ── */
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tagline {
+  font-family: var(--font-manrope);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.55);
+  margin: 0 0 2rem 0;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-manrope);
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  padding: 0.8rem 0;
+  transition: color 0.2s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.06); /* Ghost border */
+}
+.contactItem:first-of-type {
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.contactItem:hover {
+  color: #ffb3ac;
+}
+
+.contactIcon {
+  display: flex;
+  align-items: center;
+  color: #ffb3ac; /* primary */
+  flex-shrink: 0;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  margin: 1.75rem 0;
+}
+
+/* Social links */
+.socialGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-space-grotesk);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: color 0.2s ease;
+}
+.socialLink:hover {
+  color: #ffb3ac;
+}
+
+/* Icon tròn — ẨN trên desktop, hiện trên mobile */
+.socialIconCircle {
+  display: none;
+}
+
+/* Label text — hiện trên desktop */
+.socialLabelText {
+  flex: 1;
+}
+
+.socialArrow {
+  color: rgba(255,255,255,0.2);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.socialLink:hover .socialArrow {
+  color: #ffb3ac;
+  transform: translate(2px, -2px);
+}
+.socialLink:hover .socialArrow {
+  transform: translate(2px, -2px);
+}
+
+/* ── CỘT PHẢI – FORM ── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #111111;
+  border-radius: 16px;
+  padding: 2.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-family: var(--font-space-grotesk);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Input & Textarea style — "solid surface" như design.md */
+.input {
+  background-color: #1a1a1a;       /* surface_container_low */
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  font-family: var(--font-manrope);
+  font-size: 0.9rem;
+  color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease;
+  /* Ghost border theo design.md: 15% opacity */
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+}
+.input::placeholder {
+  color: rgba(255,255,255,0.25);
+}
+/* Focus: ghost border sáng lên dùng primary */
+.input:focus {
+  box-shadow: 0 0 0 1.5px #ffb3ac;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* Submit button — primary solid theo design.md */
+.submitBtn {
+  background-color: #ffb3ac;   /* primary */
+  color: #680008;               /* on_primary */
+  font-family: var(--font-space-grotesk);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 2rem;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.submitBtn:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+.submitBtn:active {
+  transform: scale(0.97);
+}
+
+/* ── Footer ── */
+.footerNote {
+  margin-top: 5rem;
+  text-align: center;
+  font-family: var(--font-manrope);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.2);
+}
+
+/* =====================================================
+   RESPONSIVE MOBILE
+   ===================================================== */
+@media (max-width: 767px) {
+  .section {
+    padding: 6rem 1.25rem 3rem;
+  }
+  .headlineBlock {
+    margin-bottom: 2rem;
+  }
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Thu gọn thông tin liên hệ trên mobile */
+  .tagline {
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+  .contactItem {
+    font-size: 0.82rem;
+    padding: 0.65rem 0;
+  }
+  .divider {
+    margin: 1.25rem 0;
+  }
+  /* Hàng ngang icon tròn trên mobile */
+  .socialGroup {
+    flex-direction: row;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .socialLink {
+    /* Chuyển sang nút tròn icon */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background-color: #1a1a1a;
+    border-bottom: none;
+    padding: 0;
+    color: rgba(255,255,255,0.6);
+    flex-shrink: 0;
+  }
+  .socialLink:hover {
+    background-color: #ffb3ac;
+    color: #680008;
+  }
+  .socialLink:hover .socialArrow {
+    transform: none;
+  }
+
+  /* Hiện icon, ẩn text và mũi tên */
+  .socialIconCircle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .socialLabelText,
+  .socialArrow {
+    display: none;
+  }
+
+  /* Form gọn hơn */
+  .form {
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+    border-radius: 12px;
+  }
+  .input {
+    padding: 0.7rem 0.85rem;
+    font-size: 0.85rem;
+  }
+  .textarea {
+    min-height: 100px;
+  }
+  .submitBtn {
+    width: 100%;              /* Full width trên mobile */
+    justify-content: center;
+    align-self: stretch;
+    padding: 0.85rem 1.5rem;
+  }
+  .footerNote {
+    margin-top: 2rem;
+    font-size: 0.7rem;
+  }
+}

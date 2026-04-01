@@ -1,0 +1,301 @@
+/* src/components/Certificates.module.css */
+
+.section {
+  padding: 9rem 1.5rem 6rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.headline {
+  font-family: var(--font-space-grotesk);
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--on-surface);
+  margin-bottom: 2rem;
+}
+
+/* ── Accent line cam ── */
+.headline::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background-color: #ffb3ac;
+  border-radius: 2px;
+  margin: 0 auto 1.25rem auto;
+}
+
+.description {
+  font-family: var(--font-manrope);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--on-surface-muted);
+  max-width: 850px;
+  margin: 0 auto 3rem auto;
+}
+
+/* =====================================================
+   SLIDE HÌNH VUÔNG
+   - max-width kiểm soát kích thước khối
+   - aspect-ratio: 1/1 giữ tỉ lệ vuông
+   ===================================================== */
+.slideWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 560px;        /* Tùy chỉnh kích thước tổng thể */
+  aspect-ratio: 1 / 1;    /* HÌNH VUÔNG */
+  margin: 0 auto;
+  background-color: #111111;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  box-sizing: border-box;
+  gap: 0.9rem;
+  cursor: zoom-in; /* Chỉ báo có thể click để phóng to */
+  transition: transform 0.3s ease;
+}
+
+.slideWrapper:hover {
+  transform: translateY(-4px);
+}
+
+/* ── Hàng trên: số thứ tự & nhãn loại ── */
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.slideNum {
+  font-family: var(--font-space-grotesk);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.18);
+  line-height: 1;
+  user-select: none;
+}
+
+.categoryTag {
+  font-family: var(--font-space-grotesk);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+/* ── Vùng ảnh: kéo full ngang, chiếm phần lớn chiều cao ── */
+.imagePane {
+  position: relative;
+  width: 100%;
+  flex: 1;           /* Chiếm hết không gian còn lại giữa topRow và slideInfo */
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+/* Placeholder khi chưa có ảnh */
+.imagePlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.2);
+  font-family: var(--font-manrope);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+/* ── Thông tin bên dưới ảnh ── */
+.slideInfo {
+  flex-shrink: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.certTitle {
+  font-family: var(--font-space-grotesk);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.issuer {
+  font-family: var(--font-manrope);
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+}
+
+.date {
+  font-family: var(--font-manrope);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+}
+
+.credentialLink {
+  font-family: var(--font-space-grotesk);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ff5722;
+  text-decoration: none;
+  margin-top: 0.25rem;
+  transition: opacity 0.2s ease;
+}
+.credentialLink:hover {
+  opacity: 0.7;
+}
+
+/* =====================================================
+   THANH DOT Điều hướng
+   ===================================================== */
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.35s ease, background-color 0.35s ease;
+}
+
+/* Dot active kéo dài thành viên thuốc */
+.dotActive {
+  width: 28px;
+  background-color: #ffffff;
+}
+
+/* ===== Responsive Mobile ===== */
+@media (max-width: 767px) {
+  .section {
+    padding: 6rem 1.25rem 4rem;
+  }
+  .headline {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  .slideWrapper {
+    max-width: 100%;
+    border-radius: 12px;
+    padding: 1rem;
+  }
+  .slideNum {
+    font-size: 1.25rem;
+  }
+  .certTitle {
+    font-size: 0.9rem;
+  }
+}
+
+/* =====================================================
+   LIGHTBOX (Phóng to ảnh)
+   ===================================================== */
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: zoom-out;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.lightboxContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.zoomedImg {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 2100;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .lightboxOverlay {
+    padding: 1rem;
+  }
+  .closeBtn {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+}
