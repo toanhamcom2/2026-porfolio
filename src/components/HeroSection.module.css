@@ -59,10 +59,10 @@
 /* Giảm cỡ chữ trên điện thoại */
 @media (max-width: 767px) {
   .typewriter {
-    font-size: 2rem;
+    font-size: 1.5rem;
     /* Độ lớn chữ (Màn hình Mobile) */
-    min-height: 3rem;
-    margin-bottom: 0.25rem;
+    min-height: 2.5rem;
+    margin-bottom: 0rem;
     /* Điện thoại càng phải kéo gần hơn */
   }
 }
