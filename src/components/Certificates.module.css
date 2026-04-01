@@ -200,7 +200,8 @@
     padding: 6rem 1.25rem 4rem;
   }
   .headline {
-    font-size: 2.25rem;
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
+    white-space: nowrap;
     margin-bottom: 1.5rem;
   }
   .description {

@@ -101,7 +101,8 @@
 
 @media (max-width: 767px) {
   .description {
-    font-size: 0.85rem;
+    font-size: clamp(0.65rem, 3.5vw, 0.85rem);
+    white-space: nowrap;
     /* Ép cỡ chữ nhỏ để nằm chung 1 dòng trên màn hình điện thoại lớn cỡ 14 Pro Max */
     letter-spacing: -0.02em;
   }
