@@ -245,6 +245,11 @@
   }
   .headlineBlock {
     margin-bottom: 2rem;
+    flex-wrap: nowrap; /* Không cho 2 từ rớt thành 2 dòng */
+  }
+  .headlineLine1,
+  .headlineLine2 {
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
   }
   .layout {
     grid-template-columns: 1fr;

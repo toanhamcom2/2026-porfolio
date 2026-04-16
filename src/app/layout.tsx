@@ -13,7 +13,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Minh - Portfolio Cá Nhân",
+  title: "Ngọc Minh - Portfolio Cá Nhân",
   description: "Portfolio cá nhân của Minh - Marketing",
 };
 

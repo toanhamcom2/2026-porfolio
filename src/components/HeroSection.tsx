@@ -55,6 +55,12 @@ export default function HeroSection() {
 
   return (
     <section className={styles.hero}>
+      {/* ── LỚP 1: Chữ đục phía sau người (Desktop) ── */}
+      <div className={`${styles.desktopGiantName} ${styles.nameLayerBack}`}>
+        <div className={styles.nameSolid}>NGUYỄN</div>
+        <div className={styles.nameSolid}>NGỌC MINH</div>
+      </div>
+
       <div className={styles.intro}>
         <h2 className={styles.authorName}>Nguyễn Ngọc Minh</h2>
 
@@ -89,24 +95,37 @@ export default function HeroSection() {
 
       <div className={styles.portraitBox}>
         <div className={styles.imageWrapper}>
-          {/* Ảnh chân dung (Mero.png). Nếu bạn muốn đổi ảnh sửa src thành dường dẫn ảnh mới trong thư mục public/ */}
+          {/* Ảnh dành riêng cho Mobile */}
           <img
             src="/mero.png"
-            alt="Minh Portrait"
-            className={styles.image}
+            alt="Minh Portrait Mobile"
+            className={`${styles.image} ${styles.mobileImageOnly}`}
           />
-
-          <div className={styles.floatingCard}>
-            <div>
-              <div className={styles.cardTitle}>Dự án hiện tại</div>
-              <div className={styles.cardSubtitle}>Thiết kế website cá nhân v1.0</div>
-            </div>
-            <div className={styles.cardIcon}>
-              {/* Icon terminal giống bản gốc */}
-              &gt;_
-            </div>
-          </div>
+          {/* Ảnh dành riêng cho Desktop */}
+          <img
+            src="/standing-landing-page-2.png"
+            alt="Minh Portrait Desktop"
+            className={`${styles.image} ${styles.desktopImageOnly}`}
+          />
         </div>
+      </div>
+
+      {/* Floating card đưa sang bên phải */}
+      <div className={styles.floatingCard}>
+        <div>
+          <div className={styles.cardTitle}>Dự án hiện tại</div>
+          <div className={styles.cardSubtitle}>Thiết kế website cá nhân v1.0</div>
+        </div>
+        <div className={styles.cardIcon}>
+          {/* Icon terminal giống bản gốc */}
+          &gt;_
+        </div>
+      </div>
+
+      {/* ── LỚP 3: Chữ rỗng viền trắng (Phía trước người) ── */}
+      <div className={`${styles.desktopGiantName} ${styles.nameLayerFront}`}>
+        <div className={styles.nameOutline}>NGUYỄN</div>
+        <div className={styles.nameOutline}>NGỌC MINH</div>
       </div>
 
       {/* 3 khối thông tin thống kê mới */}

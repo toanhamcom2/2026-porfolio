@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import Image from 'next/image';
 import styles from './Navbar.module.css';
 
 const IconSpace = () => (
@@ -25,7 +26,14 @@ export default function Navbar() {
       <nav className={styles.navbar}>
         {/* LOGO on the Left */}
         <a href="/" className={styles.logo}>
-          MERO
+          <Image
+            src="/mero-logo.png"
+            alt="Mero Logo"
+            width={100}
+            height={40}
+            className={styles.logoImg}
+            priority
+          />
         </a>
 
         {/* DESKTOP MENU (Hidden on Mobile) */}
